@@ -16,6 +16,7 @@ import { IMovie } from '../../utils/commonInterfaces';
   },{
     timestamps: true, // adds createdAt and updatedAt automatically
   });
-  
+
+  MovieSchema.index({title:1})
   export const MovieModel = model<IMovie>('Movie', MovieSchema);
   
