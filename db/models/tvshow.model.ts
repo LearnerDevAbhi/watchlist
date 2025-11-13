@@ -22,6 +22,6 @@ import { ITVShow } from "../../utils/commonInterfaces";
   },{
     timestamps: true, // adds createdAt and updatedAt automatically
   });
-  
+  TVShowSchema.index({title:1})
   export const TVShowModel = model<ITVShow>('TVShow', TVShowSchema);
   
