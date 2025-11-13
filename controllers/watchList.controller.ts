@@ -26,6 +26,14 @@ export async function addToWatchList(req: Request, res: Response) {
                 responseBody.message = 'Invlid Movie Id'
                 return res.status(responseBody.status).json(responseBody)
             }
+
+            const check_unique = await UserListModel.findOne({ userId , movieId })
+            if (check_unique) {
+                responseBody.status = 400
+                responseBody.success = false
+                responseBody.message = 'Already added in watchlist '
+                return res.status(responseBody.status).json(responseBody)
+            }
         }
         if (tvShowId) {
             const showRecord = await TVShowModel.findOne({ id: tvShowId })
@@ -33,6 +41,14 @@ export async function addToWatchList(req: Request, res: Response) {
                 responseBody.status = 400
                 responseBody.success = false
                 responseBody.message = 'Invlid Show Id'
+                return res.status(responseBody.status).json(responseBody)
+            }
+
+            const check_unique = await UserListModel.findOne({ userId , tvShowId })
+            if (check_unique) {
+                responseBody.status = 400
+                responseBody.success = false
+                responseBody.message = 'Already added in watchlist'
                 return res.status(responseBody.status).json(responseBody)
             }
         }
