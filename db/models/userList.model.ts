@@ -18,6 +18,6 @@ import { v4 as uuidv4 } from 'uuid';
     }
   );
   
-
+UserContentSchema.index({userId:1})
 
 export const UserListModel =  mongoose.model<IUserContent>('UserList', UserContentSchema);
